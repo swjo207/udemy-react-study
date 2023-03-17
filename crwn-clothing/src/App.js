@@ -1,5 +1,5 @@
-import logo from './logo.svg';
-import './App.css';
+
+import './categories.styles.scss'
 
 const categories = [
   {
@@ -29,8 +29,8 @@ function App() {
     <div className="categories-container">
       {categories.map((category) => {
         return (
-        <div className="category-container">
-          <div className="background-image" />
+        <div key={category.id} className="category-container">
+          
           <div className="category-body-container">
             <h2> {category.title} </h2>
             <p> Shop Now</p>
