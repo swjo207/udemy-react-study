@@ -3,26 +3,29 @@ import { getCategoriesAndDocuments } from "../utils/firebase/firebase.utils";
 // import { SHOP_DATA } from "../shop-data.js"
 
 // actual value want to access
-export const ProductContext = createContext({
-  products: [],
+export const CategoriesContext = createContext({
+  categoriesMap: {},
 });
 
-export const ProductsProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
-  const value = { products };
+export const CategoriesProvider = ({ children }) => {
+  const [categoriesMap, setCategoriesMap] = useState({});
+    
 
    useEffect(() => {
     const getCategoriesMap = async () => {
         const categoryMap = await getCategoriesAndDocuments(); 
-        console.log(categoryMap); 
-    }
+        //console.log(categoryMap); 
+        setCategoriesMap(categoryMap); 
+    };
 
     getCategoriesMap(); 
    }, []);
 
+   const value = { categoriesMap }; 
+
   return (
-    <ProductContext.Provider value={value}>
+    <CategoriesContext.Provider value={value}>
       {children}
-    </ProductContext.Provider>
+    </CategoriesContext.Provider>
   );
 };
